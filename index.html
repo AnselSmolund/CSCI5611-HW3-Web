@@ -1,0 +1,193 @@
+<!doctype html>
+<html> <!--<![endif]-->
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title></title>
+      <meta name="description" content="">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="apple-touch-icon" href="apple-touch-icon.png">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="css/main.css">
+
+      <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <div class="container">
+        <div class = "col-md-2">
+          <img height = "200" src = "one.png">
+        </div>
+        <div class = "col-md-8">
+          <h1>Multi-Agent Motion Planning</h1>
+          <p> CSCI 5611 Motion Planning Project Webpage<br> Ansel Smolund <br> Smolu006 </p>
+        </div>
+        <div class = "col-md-2">
+          <img style = "transform: translateX(-20%)" height = "180" src = "two.png">
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id = "water-fountain">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 style = "text-align: center">Motion Planning in 2D</h2>
+          <h4 style = "text-align: center"> <a href = "https://github.com/AnselSmolund/cloth-simulation"> Link to Code </a> </h4>
+          <p>&nbsp &nbsp For my motion planning simulation, I decided to implement boids to simulate crowd motion. I also utilized a probabilistic roadmap with a random sampling of 200 points, along with an A* pathfinding algorithm to find the optimal path for each boid. Each boid has a seek, arrival and separate method built into its functionality. The purpose of the seek method is to calculate the proper force and velocity vertices to get to the next point along the roadmap for that specific boid. When the boid has passed the final path node before the finish, it switches to an arrival method to find that specific target, so that it approaches the destination slowly and smoothly. The separate function ensures that the boids to run into each other, which works by calculating the distance to surrounding boids and then calculating a force vector based upon the distance to nearby boids and how many there are within a certain radius. Below are a few different 2D scenarios that I have set up to simulate my motion planning program.
+          </p>
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "col-md-6">
+         <h4> Scenario 1 </h4>
+         <h5> Four agents, one obstacle </h5>
+         <br>
+         <p>
+            For my first scenario, I have set up four different agents, with each agent having a start location in a separate corner of the screen. I have also given each agent a goal location that is in the opposite corner. There is an obstacle in the middle of the screen that the agents must navigate around, which is shown with the edges of the PRM.
+         </p>
+        </div>
+        <div class="col-md-3">
+          <video height = "500" controls>
+            <source src = "vids/vid1.mov">
+          </video>
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "col-md-6">
+         <h4> Scenario 2  </h4>
+         <h5> 100 agents, four obstacles </h5>
+         <br>
+         <p>
+            For my second scenario, I have set up 100 different agents all having a starting position in the top part of the environment, and having a goal position in the bottom part of the environment. I have also made the edges visible for this simulation, so you can see the different paths each boid takes. Some interesting behavior starts to come about here as you see agents clogging the gaps between the obstacles. At (0:05) in the video, I add an obstacle, which dynamically recalculates a route for each agent to take. To ensure there are no collisions amongst agents, I set a seperation radius factor to one plus the radius of the agent. This will ensure all agents will stay at least one pixel away from each other.
+         </p>
+        </div>
+        <div class="col-md-3">
+          <video height = "500" controls>
+            <source src = "vids/vid3.mov">
+          </video>
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "col-md-6">
+         <h4> Scenario 3  </h4>
+         <h5> 8 agents, four obstacles, incoming traffic </h5>
+         <br>
+         <p>
+           For my third scenario, I have set up 80 different agents, 40 of which have a starting position in the bottom and a goal position in the top, and 40 of which have the opposite configuration. Some interesting behavior comes about in this simulation as you see certain agents starting to form small flocks with one another. As the two groups come into contact in the middle you can see how each agent adjusts its velocity to avoid the oncoming traffic.
+
+         </p>
+        </div>
+        <div class="col-md-3">
+          <video height = "500" controls>
+            <source src = "vids/vid2.mov">
+          </video>
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "col-md-6">
+         <h4> Interesting result  </h4>
+         <h5> Changing max force parameter </h5>
+         <br>
+         <p>
+            I discovered something interesting behavior arise with my previous simulation if I change the max force values for certain agents. I gave each agent a random max force value, this should essentially give certain agents more aggressive tendencies, and some agents more passive tendencies. I also colored the agents based upon their max force value, with white being the most aggressive and black being the least aggressive. After every agent has successfully found its goal, I make visible the order to which each agent got home. You can see there are more dark agents that got to their goal before lighter agents. This is an interesting result because it shows that the more aggressive you are, the longer it actually takes to get to your destination.
+         </p>
+        </div>
+        <div class="col-md-3">
+          <video height = "500" controls>
+            <source src = "vids/aggression.mov">
+          </video>
+        </div>
+      </div>
+      <div class = "row">
+        <div class = "col-md-6">
+         <h4> Broken Simulation  </h4>
+         <br>
+         <p>
+            Here is an example of a simulation in which I dynamically added an obstacle, but for some reason the yellow agent's path got deleted and it couldn't even find its goal. You can see in the video that it just cruises right past its intended destination and never comes back.
+         </p>
+        </div>
+        <div class="col-md-3">
+          <video height = "500" controls>
+            <source src = "vids/oddBehavior1.mov">
+          </video>
+        </div>
+      </div>
+      <div class = "row">
+        <h3> Points for this section </h3>
+        <ul>
+          <li> Crowd/FlockingSimulation  (Required) (70Points)
+            <ul>
+            <li>Implement a local interaction technique (Boids)</li>
+            <li>Find 2 or 3 scenarios showing interesting interactions between the agents</li>
+            <li>mplement a global navigation strategy for the agents (A* with PRM)</li>
+            <li>Your roadmap needs to account for the extent of the agents, and should support multiple obstacles in the environment</li>
+            <li>Show 2 or 3 scenarios of groups of agents successfully navigating through environments with local minima.</li>
+            <li>Find a scenario where your overall simulation breaks and produces odd behavior</li>
+          </ul>
+          </li>
+          <li>(15) Allow user to control some characters or obstacles in real time, simulated agents should replan or react dynamically to the user</li>
+          <li>(5) Allow the user to add and move obstacles at run time</li>
+          <li>(5) Implement A* for graphsearch</li>
+          <li>(5) Implement path smoothing </li>
+        </ul>
+      </div>
+
+    </div>
+    <div class = "container" id = "fire">
+      <div class="row">
+        <div class="col-md-6">
+          <h2 style = "text-align: center">Motion Planning in 3D</h2>
+          <h4 style = "text-align: center"><a href = "https://github.com/AnselSmolund/flag-simulation"> Link to Code </a> </h4>
+          <p>
+              &nbsp&nbsp To simulate motion planning in 3D, I was able to essentially take all the code I had written for the 2D implementation and modify a few elements. Instead of simple ellipses for the obstacles and agents, I created a cylinder primitive shape in processing using the beginShape() and endShape() functions. I also added a top circle to the agents. One issue that arose while implementing the 3D version was that it took a lot more computational power to generate the paths with A* algorithm, so I had to decrease the number of random samples I take to build the PRM. Because of this modification, sometimes an agent wouldn’t be able to find a path to its goal. In this scenario, I first check if it’s solution path is null, and if it is then I just have the agent seek the goal, without using its global navigation plan.
+          </p>
+          <br>
+          <br>
+        </div>
+        <div class="col-md-6">
+          <video width = "300" controls>
+            <source src = "vids/3d3.mov">
+          </video>
+          <img style = "top:40x"width = "250" src = "3dpic.png"></img>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h2 style = "text-align: center">Global Navigation Visualized</h2>
+          <p> I gave each agent a path based upon shortest path it found with A*. I then drew the path with the same color as the agent.
+        </div>
+        <div class="col-md-6">
+          <video width = "400" controls>
+            <source src = "vids/3d4.mov">
+          </video>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <h2 style = "text-align: center">600 Agents, five obstacles</h2>
+        </div>
+        <div class="col-md-6">
+          <video width = "400" controls>
+            <source src = "vids/3d7.mov">
+          </video>
+        </div>
+      </div>
+
+      <div class = "row">
+        <h3> Points for this section </h3>
+        <ul>
+
+          <li>(10)Nicely rendered 3D scenes w/models to give context</li>
+          <li>(5) 3D rendering of scenario and characters</li>
+        </ul>
+      </div>
+    </div>
+
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
