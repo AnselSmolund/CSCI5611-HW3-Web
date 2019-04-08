@@ -33,7 +33,7 @@
       <div class="row">
         <div class="col-md-12">
           <h2 style = "text-align: center">Motion Planning in 2D</h2>
-          <h4 style = "text-align: center"> <a href = "https://github.com/AnselSmolund/cloth-simulation"> Link to Code </a> </h4>
+          <h4 style = "text-align: center"> <a href = "https://github.com/AnselSmolund/CSCI5611-HW3-1"> Link to Code </a> </h4>
           <p>&nbsp &nbsp For my motion planning simulation, I decided to implement boids to simulate crowd motion. I also utilized a probabilistic roadmap with a random sampling of 200 points, along with an A* pathfinding algorithm to find the optimal path for each boid. Each boid has a seek, arrival and separate method built into its functionality. The purpose of the seek method is to calculate the proper force and velocity vertices to get to the next point along the roadmap for that specific boid. When the boid has passed the final path node before the finish, it switches to an arrival method to find that specific target, so that it approaches the destination slowly and smoothly. The separate function ensures that the boids to run into each other, which works by calculating the distance to surrounding boids and then calculating a force vector based upon the distance to nearby boids and how many there are within a certain radius. Below are a few different 2D scenarios that I have set up to simulate my motion planning program.
           </p>
         </div>
@@ -138,7 +138,7 @@
       <div class="row">
         <div class="col-md-6">
           <h2 style = "text-align: center">Motion Planning in 3D</h2>
-          <h4 style = "text-align: center"><a href = "https://github.com/AnselSmolund/flag-simulation"> Link to Code </a> </h4>
+          <h4 style = "text-align: center"><a href = "https://github.com/AnselSmolund/CSCI5611-HW3-2"> Link to Code </a> </h4>
           <p>
               &nbsp&nbsp To simulate motion planning in 3D, I was able to essentially take all the code I had written for the 2D implementation and modify a few elements. Instead of simple ellipses for the obstacles and agents, I created a cylinder primitive shape in processing using the beginShape() and endShape() functions. I also added a top circle to the agents. One issue that arose while implementing the 3D version was that it took a lot more computational power to generate the paths with A* algorithm, so I had to decrease the number of random samples I take to build the PRM. Because of this modification, sometimes an agent wouldn’t be able to find a path to its goal. In this scenario, I first check if it’s solution path is null, and if it is then I just have the agent seek the goal, without using its global navigation plan.
           </p>
